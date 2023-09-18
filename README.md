@@ -36,12 +36,19 @@ The drivers will likely have an equal weight when determining the quality -- thi
 --- 
 | Feature        | Definition                                   |
 | ---            | ---                                          |
-| bedroomcnt     | int; a count of how many bedrooms in the house |
-| bathroomcnt    | float; a count of how many bathrooms in the house |
-| sq_feet    | int; the total sq footage of the property |
-| tax_value        | int; **target** the predetermined tax value assessed off property value |
-| yearbuilt    | int; the year the respective property was built |
-| county         | string; the county the property is located in |
+| fixed_acidity  | |
+| volatile_acidity  |  |
+| citric_acid   | |
+| residual_sugar  | |
+| chlorides  |  |
+| free_sulfur_dioxide | |
+| total_sulfur_dioxide | |
+| density | |
+| ph | |
+| sulphate | |
+| alcohol | |
+| quality | |
+
 
 
 ## Reproducability Requirements
