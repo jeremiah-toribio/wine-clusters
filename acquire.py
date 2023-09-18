@@ -21,4 +21,34 @@ def acquire_wine():
 
         df = pd.concat([white_df, red_df], axis=0, ignore_index=True)
         df.to_csv('wine_csv.csv')
+    df = df.drop(columns=['Unnamed: 0'])
     return df
+
+def missing_by_col(df): 
+    '''
+    returns a single series of null values by column name
+    '''
+    return df.isnull().sum(axis=0)
+
+def missing_by_row(df):
+    '''
+    prints out a report of how many rows have a certain
+    number of columns/fields missing both by count and proportion
+    
+    '''
+    # get the number of missing elements by row (axis 1)
+    count_missing = df.isnull().sum(axis=1)
+    # get the ratio/percent of missing elements by row:
+    percent_missing = round((df.isnull().sum(axis=1) / df.shape[1]) * 100)
+    # make a df with those two series (same len as the original df)
+    # reset the index because we want to count both things
+    # under aggregation (because they will always be sononomous)
+    # use a count function to grab the similar rows
+    # print that dataframe as a report
+    rows_df = pd.DataFrame({
+    'num_cols_missing': count_missing,
+    'percent_cols_missing': percent_missing
+    }).reset_index()\
+    .groupby(['num_cols_missing', 'percent_cols_missing']).\
+    count().reset_index().rename(columns={'index':'num_rows'})
+    return rows_df
