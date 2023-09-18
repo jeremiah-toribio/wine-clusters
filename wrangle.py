@@ -54,7 +54,7 @@ def report_outliers(df, k=1.5) -> None:
             print('----------')
             
         
-def remove_outliers(df, k=1.5):
+def remove_outliers(df, k=1.5, exclude_col='quality'):
     """
     Remove rows from a DataFrame that contain outliers based on the fences calculated
     using the get_fences function.
@@ -71,10 +71,11 @@ def remove_outliers(df, k=1.5):
 
     # Iterate over each column in the DataFrame
     for col in df.columns:
-        lower_bound, upper_bound = get_fences(df, col, k)
+        if col != exclude_col:
+            lower_bound, upper_bound = get_fences(df, col, k)
         
         # Remove rows where the column value is below the lower_bound or above the upper_bound
-        cleaned_df = cleaned_df[(cleaned_df[col] >= lower_bound) & (cleaned_df[col] <= upper_bound)]
+            cleaned_df = cleaned_df[(cleaned_df[col] >= lower_bound) & (cleaned_df[col] <= upper_bound)]
     
     return cleaned_df
 
