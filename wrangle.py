@@ -41,7 +41,7 @@ def splitter(df,target='quality', stratify=None):
 
 
 
-def summarize(df):
+def summarize_df(df):
     """
     This function takes a pandas dataframe as input and returns
     a dataframe with information about each column in the dataframe. For
@@ -105,7 +105,7 @@ def organize_columns(train):
                 num_cols.append(col)
     return cat_cols, num_cols
 
-def check_cat_distribution(df,target='tax_value'):
+def check_cat_distribution(df,target='quality'):
     '''
     Loop through a df and check their respective distributions.
     This is to be used with categorical datatypes, since the only 
@@ -120,18 +120,18 @@ def check_cat_distribution(df,target='tax_value'):
         #print('''-------------------------------------------------------------''')\
     
 
-def check_num_distribution(df,dataset='train',target='tax_value'):
+def check_num_distribution(df,dataset='train',target='quality'):
     '''
     Loop through a df and check their respective distributions.
     This is to be used with numerical datatypes, since the 
     plots used are hist plot and box plot, with a target used as the hue to compare.
     '''
     for col in df:
-        sns.histplot(data=dataset, x=df[col],hue='tax_value')
+        sns.histplot(data=dataset, x=df[col],hue='quality')
         t = col.lower()
         plt.title(t)
         plt.show()
-        sns.boxplot(data=dataset, x=col,hue='tax_value')
+        sns.boxplot(data=dataset, x=col,hue='quality')
         plt.title(t)
         plt.show()
         print('''-------------------------------------------------------------''')
