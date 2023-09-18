@@ -1,36 +1,36 @@
 # Wine Clustering
 ---
 ## Project Description 
-The data sceince team assisting the California Wine Institute is interested to see if clustering the wine data will produce better results
+The data science team assisting the California Wine Institute is interested to see if clustering the wine data will produce better results. The data will be clustered accordingly and the working team will report findings.
 
 ## Project Goals
 ---
-- Discover independence of features within home data
-- Utilizing said features to develop machine learning models that will determine the price of a single-family home 
-- Tax Value Amount is determined by the Property Value and annual Tax %, this can vary even between homes that are within close proximity
-- The insights discovered will be used to estimate property value and provide a more robust understanding of the attributes of a home and it's associated value
+- Discover independence of features within data
+- Utilizing said features to develop machine learning models that will determine the quality of wine 
+- Determine the drivers of quality
+- The insights discovered will be used to estimate quality and provide a more robust understanding of the attributes of a the wine and it's associated quality
 
 ## Initial Thoughts
 --- 
-When finding the price of a home, attributes like sq footage and bedrooms are certaintly what I think would drive the price. We can assess this through our tests and see if this is true.
+The drivers will likely have an equal weight when determining the quality -- this will be due to the quality likely scored by a professional who is cognizant of their biasis and would like to score on an objective scale. There will still likely be clusters based on data for the wines, since different wines will share qualities. 
 
 ## Planning
 --- 
-1. Acquire data from MySQL Server
+1. Acquire data from data.world
 2. Prepare data accordingly for exploration & machine learning needs
     a. Creating dummy columns of multi categorical data
-        - county
+        - N/A
     c. Cleaning numeric data
-        - total_charges
-3. Explore data for assocations with tax_value
+        - Clean data types
+3. Explore data for assocations with quality (correlation tests)
     a. Determine our baseline prediction
-    b. Does the number of bedroom directly effect price
-    c. Is sq footage independent of tax_value
-    d. Does pricing matter based on county
+    b. Determine which features would be best to cluster
+    c. Create new column of clustered data
 4. Develop a model to further understand churn
-    a. Use various models to determine what algorithm are best to use
+    a. Use various models to determine what algorithm are best for the data
     b. Select best model based on evaluation metrics
     c. Evaluate all models on respective test data
+    d. Tune hyperparameters
 
 ## Data Dictionary
 --- 
@@ -47,13 +47,11 @@ When finding the price of a home, attributes like sq footage and bedrooms are ce
 ## Reproducability Requirements
 ---
 1. Clone repo
-2. Establish credentials in *env.py* file in order to access codeup MySQL server
-    2a. OR have the csv already downloaded
-3. Run notebook
+2. Run notebook
 
-## Conclusions
+## Conclusions (IN PROGRESS)
 ---
 
 
-## Recommendation
+## Recommendation (IN PROGRESS)
 ---
