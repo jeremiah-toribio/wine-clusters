@@ -1,5 +1,4 @@
 # ==--==--== Imports ==--==--==
-import env
 import os
 # Ignore Warning
 import warnings
@@ -24,7 +23,7 @@ from sklearn.model_selection import GridSearchCV
 
 
 
-def splitter(df,target='tax_value', stratify=None):
+def splitter(df,target='quality', stratify=None):
     '''
     Returns
     Train, Validate, Test from SKLearn
@@ -141,7 +140,7 @@ def check_num_distribution(df,dataset='train',target='tax_value'):
 # #     Scaler    # #
 ###               ###
 
-def QuickScale(x_train, x_validate, x_test, linear=True, scaler='MinMax'):
+def QuickScale(x_train, x_validate, x_test, linear=True, scaler='StandardScaler'):
     '''
     Produces data scaled with each respective style, will utilize all unless specificied otherwise.
 
