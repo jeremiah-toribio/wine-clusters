@@ -23,6 +23,62 @@ from sklearn.model_selection import GridSearchCV
 
 
 
+def get_fences(df, col, k=1.5) -> tuple:
+    '''
+    get fences will calculate the upper and lower fence
+    based on the inner quartile range of a single Series
+    
+    return: lower_bound and upper_bound, two floats
+    '''
+    q3 = df[col].quantile(0.75)
+    q1 = df[col].quantile(0.25)
+    iqr = q3 - q1
+    upper_bound = q3 + (k * iqr)
+    lower_bound = q1 - (k * iqr)
+    return lower_bound, upper_bound
+
+def report_outliers(df, k=1.5) -> None:
+    '''
+    report_outliers will print a subset of each continuous
+    series in a dataframe (based on numeric quality and n>20)
+    and will print out results of this analysis with the fences
+    in places
+    '''
+    num_df = df.select_dtypes('number')
+    for col in num_df:
+        if len(num_df[col].value_counts()) > 20:
+            lower_bound, upper_bound = get_fences(df,col, k=k)
+            print(f'Outliers for Col {col}:')
+            print('lower: ', lower_bound, 'upper: ', upper_bound)
+            print(f' {df[col][(df[col] > upper_bound) | (df[col] < lower_bound)]} ')
+            print('----------')
+            
+        
+def remove_outliers(df, k=1.5):
+    """
+    Remove rows from a DataFrame that contain outliers based on the fences calculated
+    using the get_fences function.
+
+    Parameters:
+    df (pandas.DataFrame): The DataFrame containing the data.
+    k (float): The multiplier for the inner quartile range in get_fences.
+
+    Returns:
+    pandas.DataFrame: A new DataFrame with outliers removed.
+    """
+    # Create a copy of the original DataFrame
+    cleaned_df = df.copy()
+
+    # Iterate over each column in the DataFrame
+    for col in df.columns:
+        lower_bound, upper_bound = get_fences(df, col, k)
+        
+        # Remove rows where the column value is below the lower_bound or above the upper_bound
+        cleaned_df = cleaned_df[(cleaned_df[col] >= lower_bound) & (cleaned_df[col] <= upper_bound)]
+    
+    return cleaned_df
+
+
 def splitter(df,target='quality', stratify=None):
     '''
     Returns
