@@ -79,15 +79,17 @@ def remove_outliers(df, k=1.5):
     return cleaned_df
 
 
-def splitter(df,target='quality', stratify=None):
+################### SPLIT FUNCTION ##################
+
+def splitter(df, stratify=None):
     '''
     Returns
     Train, Validate, Test from SKLearn
     Sizes are 60% Train, 20% Validate, 20% Test
     '''
-    train, test = train_test_split(df, test_size=.2, random_state=4343, stratify=stratify)
+    train, test = train_test_split(df, test_size=.2, random_state=4343, stratify=df[stratify])
 
-    train, validate = train_test_split(train, test_size=.2, random_state=4343, stratify=stratify)
+    train, validate = train_test_split(train, test_size=.2, random_state=4343, stratify=train[stratify])
     print(f'Dataframe: {df.shape}', '100%')
     print(f'Train: {train.shape}', '| ~60%')
     print(f'Validate: {validate.shape}', '| ~20%')
