@@ -39,7 +39,7 @@ def check_correlation(feature, compare, a=.05):
         r, p = stats.pearsonr(compare, feature)
         if p < α:
             return print(f"""Reject the null hypothesis. There is a linear correlation.
-        Spearman’s r: {r:2f}
+        Pearson’s r: {r:2f}
         P-value: {p}""")
         else:
             return print(f"""We fail to reject the null hypothesis that there is a linear correlation.
@@ -50,7 +50,7 @@ def check_correlation(feature, compare, a=.05):
         r, p = stats.spearmanr(compare, feature)
         if p < α:
             return print(f"""Reject the null hypothesis. There is a linear correlation.
-        Pearson's r: {r:2f}
+        Spearman's r: {r:2f}
         P-value: {p}""")
         else:
             return print(f"""We fail to reject the null hypothesis that there is a linear correlation.
