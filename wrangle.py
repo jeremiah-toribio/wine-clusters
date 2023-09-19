@@ -207,7 +207,7 @@ def check_num_distribution(df,target='quality'):
 # #     Scaler    # #
 ###               ###
 
-def QuickScale(x_train, x_validate, x_test, linear=True, scaler='StandardScaler'):
+def QuickScale(x_train, x_validate, x_test, linear=True, scaler='Standard'):
     '''
     Produces data scaled with each respective style, will utilize all unless specificied otherwise.
 
@@ -217,9 +217,14 @@ def QuickScale(x_train, x_validate, x_test, linear=True, scaler='StandardScaler'
     '''
     # Check for linear keyword argument to choose how to scale.
     if linear==True:
-        mmscaler = MinMaxScaler()
-        nscaler = StandardScaler()
-        rscaler = RobustScaler()
+        if scaler == 'MinMax':
+            mmscaler = MinMaxScaler()
+        elif scaler == 'Standard':
+            nscaler = StandardScaler()
+        elif scaler == 'Robust':
+            rscaler = RobustScaler()
+        else:
+            raise ValueError('Select a valid scaler.')
     else:
         # Non Linear Scaler 
         qscaler = QuantileTransformer()
