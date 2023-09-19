@@ -56,7 +56,7 @@ def log_regression_compiled(x_train, y_train, x_validate, y_validate):
     '''
     # Parameters defined for GridSearch, train model
     param_grid_L1 = {'penalty': ['l1', 'l2'], 'C': np.arange(.1,4,.1)}
-    logreg_tuned = log(solver='saga', max_iter=150) # solver='saga', max_iter=150
+    logreg_tuned = log(solver='saga', max_iter=150)
     logreg_tuned_gs = GridSearchCV(logreg_tuned, param_grid_L1, cv=5)
     logreg_tuned_gs.fit(x_train,y_train)
 
