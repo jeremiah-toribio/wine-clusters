@@ -59,6 +59,7 @@ def check_correlation(feature, compare, a=.05):
 
 def t_test(feature, compare):
     '''
+    For independent feature testing
     '''
     α = .05
     lv, p = stats.levene(*samples, center='median', proportiontocut=0.05)
@@ -71,6 +72,25 @@ def t_test(feature, compare):
         t_stat, p = stats.ttest_ind(feature,compare,equal_var=False)
 
     return check_p(p)
+
+def chi2_test(col1, col2, a=.05):
+    '''
+    NOTE: Requires stats from scipy in order to function
+    A faster way to test two columns desired for cat vs. cat statistical analysis.
+
+    Default α is set to .05.
+
+    Outputs crosstab and respective chi2 relative metrics.
+    '''
+    observed = pd.crosstab(col1, col2)
+    chi2, p, degf, expected = stats.chi2_contingency(observed)
+    
+    if p < a:
+        print(f'We can reject the null hypothesis with a p-score of:',{p})
+    else:
+        print(f'We fail to reject the null hypothesis with a p-score of:',{p})
+    
+    return observed
 
 def plot_residuals(train, x_train, y_train, yhat, baseline):
     '''
