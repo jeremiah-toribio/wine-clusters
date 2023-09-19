@@ -26,12 +26,12 @@ def check_p(p):
     else:
         return print(f'We fail to reject the null hypothesis with a p-score of:',{p})
 
-def check_correlation(feature, compare):
+def check_correlation(feature, compare, a=.05):
     '''
     - Shapiro's to check distribution
     - After distribution is determined, use pearsons or spearman r 
     '''
-    α = .05
+    α = a
     sr,sp = stats.shapiro(feature)
 
     if sp > α:
