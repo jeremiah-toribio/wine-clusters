@@ -36,18 +36,18 @@ The drivers will likely have an equal weight when determining the quality -- thi
 --- 
 | Feature        | Definition                                   |
 | ---            | ---                                          |
-| fixed_acidity  | |
-| volatile_acidity  |  |
-| citric_acid   | |
-| residual_sugar  | |
-| chlorides  |  |
-| free_sulfur_dioxide | |
-| total_sulfur_dioxide | |
-| density | |
-| ph | |
-| sulphate | |
-| alcohol | |
-| quality | |
+| fixed_acidity  | calculated fixed acidity - organic acids|
+| volatile_acidity  | calculated volatile acidity - steam distillable acids |
+| citric_acid   |the amount of citric acid - provide haze|
+| residual_sugar  | the amount of residual sugar - (leftover sugars after fermentation)|
+| chlorides  | the amount of sodium chlorides |
+| free_sulfur_dioxide | free sulfur dioxide content - free sulfur reaction agents |
+| total_sulfur_dioxide | total sulfur dioxide content - free and other SO2 levels|
+| density | density value - denotes fermentation conditions and yeast growth|
+| ph | ph level - acidity|
+| sulfite | sulphate content|
+| alcohol | alcohol content|
+| quality | rating given by wine sommelier|
 
 
 
@@ -56,8 +56,10 @@ The drivers will likely have an equal weight when determining the quality -- thi
 1. Clone repo
 2. Run notebook
 
-## Conclusions (IN PROGRESS)
----
+## Conclusions 
+- Alcohol is strongest driver
+- Clustering of features did improve model accuracy
+- There is a human element to assigning quality that does not necessarily provide a clear insight when trying to predict
 
 
 ## Recommendation (IN PROGRESS)
