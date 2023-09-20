@@ -75,7 +75,8 @@ def log_regression_compiled(x_train, y_train, x_validate, y_validate):
     model_prediction = logit.predict(x_train)
     model_prediction_test = logit.predict(x_validate)
 
-    print(accuracy_score(y_validate,model_prediction_test))
+    print(f'Accuracy Score on train:    {accuracy_score(y_train,model_prediction)}')
+    print(f'Accuracy Score on validate: {accuracy_score(y_validate,model_prediction_test)}')
     # # generate metrics
     # TN, FP, FN, TP = confusion_matrix(y_train, model_prediction).ravel()
     # get_classification_report(y_train,model_prediction)
